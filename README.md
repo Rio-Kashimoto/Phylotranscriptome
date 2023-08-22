@@ -7,21 +7,21 @@ Kashimoto et al. **(2023)**, *Anemonefish are better taxonomists than humans:CUR
 [Kashimoto et al. **(2022)**, *Transcriptomes of Giant Sea Anemones from Okinawa as a Tool for Understanding Their Phylogeny and Symbiotic Relationships with Anemonefish:zs210111 **Zoological Science**](https://www.researchgate.net/publication/360318669_Transcriptomes_of_Giant_Sea_Anemones_from_Okinawa_as_a_Tool_for_Understanding_Their_Phylogeny_and_Symbiotic_Relationships_with_Anemonefish)
  
 Installation\
-1 Trimmomatic\
-2 Trinity\
-3 CD-HIT\
-4 blast\
-5 [get_gc_content.pl](https://github.com/jmeneghin/perl-for-reysenbach-lab)\
-6 Transdecoder\
-7 Orthofinder\
-8 fasttree\
-9 BUSCO\
-10 iqtree2
+1. Trimmomatic\
+2. Trinity\
+3. CD-HIT\
+4. blast\
+5. [get_gc_content.pl](https://github.com/jmeneghin/perl-for-reysenbach-lab)\
+6. Transdecoder\
+7. Orthofinder\
+8. fasttree\
+9. BUSCO\
+10. iqtree2
 
 
 **1 Trimmomatic: Quality trimming and adapter clipping**\
 
-$java -jar /Version0.39binary/Trimmomatic-0.39/trimmomatic-0.39.jar PE R1_001.fastq R1_002.fastq output_forward_paired.fastq output_forward_unpaired.fastq output_reverse_paired.fastq output_reverse_unpaired.fastq ILLUMINNACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36
+`$java -jar /Version0.39binary/Trimmomatic-0.39/trimmomatic-0.39.jar PE R1_001.fastq R1_002.fastq output_forward_paired.fastq output_forward_unpaired.fastq output_reverse_paired.fastq output_reverse_unpaired.fastq ILLUMINNACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36`
 
 **2 Trinity for *De-novo* assembely for array job**\
 
