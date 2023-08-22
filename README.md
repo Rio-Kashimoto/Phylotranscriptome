@@ -20,24 +20,29 @@ Installation\
 
 
 **1 Trimmomatic: Quality trimming and adapter clipping**\
-java -jar /Version0.39binary/Trimmomatic-0.39/trimmomatic-0.39.jar PE R1_001.fastq R1_002.fastq output_forward_paired.fastq output_forward_unpaired.fastq output_reverse_paired.fastq output_reverse_unpaired.fastq ILLUMINNACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36
+
+$java -jar /Version0.39binary/Trimmomatic-0.39/trimmomatic-0.39.jar PE R1_001.fastq R1_002.fastq output_forward_paired.fastq output_forward_unpaired.fastq output_reverse_paired.fastq output_reverse_unpaired.fastq ILLUMINNACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36
 
 **2 Trinity for *De-novo* assembely for array job**\
-module load python/3.7.3
+
+$module load python/3.7.3
 /trinityrnaseq-v2.11.0/Trinity --seqType fq --left ${file}_R1_paired.fastq --right ${file}_R2_paired.fastq --max_memory 200G --min_kmer_cov 2 --min_contig_length 300 --bflyCPU 30 --output trinity_ID295_${file} --bflyHeapSpaceMax 1G --bflyGCThreads 2 --SS_lib_type RF --no_normalize_reads
 
 You will get the final assembled reads **Trinity.fasta**.
 
 **3 Gene(isoform) name change** You can delete TRINITY_DN change to tr or your preffered name and delete the information after the blank space.
-sed "s/>TRINITY_DN/>${file}_tr/" ${file}_Trinity.fasta > ${file}_Trinity.fasta.mod01
+
+$sed "s/>TRINITY_DN/>${file}_tr/" ${file}_Trinity.fasta > ${file}_Trinity.fasta.mod01
 awk -F" " '{print $1}' ${file}_Trinity.fasta.mod01 > ${file}_Trinity.fasta.mod02
 
 **4 CD-HIT**
-cd-hit-est -i ${file}_Trinity.fasta.mod02 -o ${file}.fasta.db98 -c 0.98 -n 11 -M 16000 -d 50 -T 8
+
+$cd-hit-est -i ${file}_Trinity.fasta.mod02 -o ${file}.fasta.db98 -c 0.98 -n 11 -M 16000 -d 50 -T 8
 
 
 **5 Concatanation - if you need to sort your target species from symbiotic organisms**
-	for i in *_Trinity.fasta.mod02; do cat ${i} >> all_anemones_tr.fasta; done
+
+$for i in *_Trinity.fasta.mod02; do cat ${i} >> all_anemones_tr.fasta; done
 	
 **Blast in case you want to purify your target species transcriptome data from symbiotic organisms**\
 In my paper, I separated symbiodinium and alga sequences from sea anemone dataset sue to we obtained the sample from tentacles.
