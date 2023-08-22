@@ -70,7 +70,7 @@ To find symbiodinium hit sequence read from the tentacle RNA-seq data
 	 -out ${OUT_DIR}/all_anemones_tr_vs_symABCtr_blastn_1e-20 -evalue 1e-20 -outfmt 0 -num_threads 64
 
 
-If your dataset is non symbiotic sample, then please gp directly to step **6**
+If your dataset is non symbiotic sample, then please go directly to step **6**
 
 # GC content to purify your target speciesbased on GC % difference
 
@@ -123,16 +123,17 @@ If your dataset is non symbiotic sample, then please gp directly to step **6**
 `$ vi all_anemones_tr_vs_symABCtr_blastn_1e-20-ALL.bhtab.BLAST`
 
 `$ head all_anemones_tr_vs_symABCtr_blastn_1e-20-ALL.bhtab.BLAST`
-1 Equa_10_S27_tr17623_c0_g1_i1 2196 no hits 0
-2 Equa_10_S27_tr17623_c0_g2_i1 540 no hits 0
-3 Equa_10_S27_tr17623_c0_g3_i1 595 no hits 0
-4 Equa_10_S27_tr17623_c0_g4_i1 2501 no hits 0
-5 Equa_10_S27_tr17623_c0_g4_i2 2416 no hits 0
-6 Equa_10_S27_tr17663_c0_g1_i1 395 no hits 0
-7 Equa_10_S27_tr17663_c0_g2_i1 348 no hits 0
-8 Equa_10_S27_tr17628_c1_g1_i7 7552 no hits 0
-9 Equa_10_S27_tr17628_c1_g1_i2 4462 no hits 0
-10 Equa_10_S27_tr17628_c1_g1_i5 3572 no hits 0
+
+1 Equa_10_S27_tr17623_c0_g1_i1 2196 no hits 0\
+2 Equa_10_S27_tr17623_c0_g2_i1 540 no hits 0\
+3 Equa_10_S27_tr17623_c0_g3_i1 595 no hits 0\
+4 Equa_10_S27_tr17623_c0_g4_i1 2501 no hits 0\
+5 Equa_10_S27_tr17623_c0_g4_i2 2416 no hits 0\
+6 Equa_10_S27_tr17663_c0_g1_i1 395 no hits 0\
+7 Equa_10_S27_tr17663_c0_g2_i1 348 no hits 0\
+8 Equa_10_S27_tr17628_c1_g1_i7 7552 no hits 0\
+9 Equa_10_S27_tr17628_c1_g1_i2 4462 no hits 0\
+10 Equa_10_S27_tr17628_c1_g1_i5 3572 no hits 0\
 
 
 **Combined the dataset between blast and GC output**
