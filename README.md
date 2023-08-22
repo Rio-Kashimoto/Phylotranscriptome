@@ -133,7 +133,7 @@ If your dataset is non symbiotic sample, then please go directly to step **6**
 7 Equa_10_S27_tr17663_c0_g2_i1 348 no hits 0\
 8 Equa_10_S27_tr17628_c1_g1_i7 7552 no hits 0\
 9 Equa_10_S27_tr17628_c1_g1_i2 4462 no hits 0\
-10 Equa_10_S27_tr17628_c1_g1_i5 3572 no hits 0\
+10 Equa_10_S27_tr17628_c1_g1_i5 3572 no hits 0
 
 
 **Combined the dataset between blast and GC output**
@@ -146,16 +146,16 @@ If your dataset is non symbiotic sample, then please go directly to step **6**
 `./genome2tableNCBI.sh all_anemones_tr.fasta all_anemones_tr.fasta.TAB &`
 
 
-# Based on GC content separation
+# Based on GC content and blast hit separation from symbiotic organisms
 
 **Create sea anemone transcriptome data**
 
-$ awk -F"\t" 'FNR==NR { a[FNR""] = $4; b[FNR""] =$7; next } {if (a[FNR""]=="no hits" && b[FNR""]<60) {print $0}}' all_anemones_ABC-BLAST_GC.TAB all_anemones_tr.fasta.TAB > all_anemones_tr.fasta.TAB.woHIT_60
+`$ awk -F"\t" 'FNR==NR { a[FNR""] = $4; b[FNR""] =$7; next } {if (a[FNR""]=="no hits" && b[FNR""]<60) {print $0}}' all_anemones_ABC-BLAST_GC.TAB all_anemones_tr.fasta.TAB > all_anemones_tr.fasta.TAB.woHIT_60`
 
 
 **Create alga *Symbiodinium* transcriptome data**
 
-awk -F"\t" 'FNR==NR { a[FNR""] = $4; b[FNR""] =$7; next } {if (a[FNR""]!="no hits" && b[FNR""]>=40) {print $0}}' all_anemones_ABC-BLAST_GC.TAB all_anemones_tr.fasta.TAB > all_algae_tr.fasta.TAB.wHIT_40
+`awk -F"\t" 'FNR==NR { a[FNR""] = $4; b[FNR""] =$7; next } {if (a[FNR""]!="no hits" && b[FNR""]>=40) {print $0}}' all_anemones_ABC-BLAST_GC.TAB all_anemones_tr.fasta.TAB > all_algae_tr.fasta.TAB.wHIT_40`
 
 
 # Check the identifier and read ratio for target species and symbiont
@@ -163,30 +163,35 @@ awk -F"\t" 'FNR==NR { a[FNR""] = $4; b[FNR""] =$7; next } {if (a[FNR""]!="no hit
 Anemone read was around 65-70％
 
 `$ cat all_anemones_tr.fasta.TAB.woHIT_60 | awk -F"_" '{print $1}' - | sort -s - | uniq -c - | head`
- 205062 >Equa
-  87433 >G2
- 428653 >Hcri
-  47959 >Hhem
- 105811 >MdorSRA
+
+ 205062 >Equa\
+  87433 >G2\
+ 428653 >Hcri\
+  47959 >Hhem\
+ 105811 >MdorSRA\
  158118 >Shad
 
 Alga read was around ３０ -35％
+
 `$ cat all_algae_tr.fasta.TAB.wHIT_40| awk -F"_" '{print $1}' - | sort -s - | uniq -c - | head`
-  89439 >Equa
-  41502 >G2
- 215167 >Hcri
-  40996 >Hhem
-  77985 >MdorSRA
+
+  89439 >Equa\
+  41502 >G2\
+ 215167 >Hcri\
+  40996 >Hhem\
+  77985 >MdorSRA\
   77494 >Shad
 
 
 Total read
+
 `$ cat all_anemones_tr.fasta.TAB | awk -F"_" '{print $1}' - | sort -s - | uniq -c - | head`
-317595 >Equa
- 139256 >G2
- 688981 >Hcri
-  97220 >Hhem
- 198134 >MdorSRA
+
+317595 >Equa\
+ 139256 >G2\
+ 688981 >Hcri\
+  97220 >Hhem\
+ 198134 >MdorSRA\
  253812 >Shad
 
 
@@ -213,9 +218,10 @@ Total read
 
 # 7 Protein prediction
 
-#Step1
+#Step1\
 `/TransDecoder-TransDecoder-v5.5.0/TransDecoder.LongOrfs -S -m100  -t ${file}_anemone_nucle.fasta`
-#Step2
+
+#Step2\
 `/TransDecoder-TransDecoder-v5.5.0/TransDecoder.Predict --single_best_only -t ${file}_anemone_nucle.fasta`
 
 # 8 Gene ID change
@@ -233,5 +239,5 @@ Total read
 `$ cd /OrthoFinder/Results_date/MultipleSequenceAlignments/SpeciesTreeAlignment.fa`
 
 
-# 10 Phylogenetic Tree reconstraction**
+# 10 Phylogenetic Tree reconstraction
 `iqtree2 -s SpeciesTreeAlignment.fa -m MFP -bb 1000 -alrt 1000 -nt AUTO`
