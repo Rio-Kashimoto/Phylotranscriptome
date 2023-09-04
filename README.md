@@ -45,7 +45,7 @@ awk -F" " '{print $1}' ${file}_Trinity.fasta.mod01 > ${file}_Trinity.fasta.mod02
 `$ cd-hit-est -i ${file}_Trinity.fasta.mod02 -o ${file}.fasta.db98 -c 0.98 -n 11 -M 16000 -d 50 -T 8`
 
 
-# 5 Concatanation - if you have symbiotic sample 
+# 5 Separate sea anemone and algae reads – if symbiotic samples are present
 
 In my paper, I separated symbiodinium and alga sequences from sea anemone tentacles dataset. 
 If your dataset is non symbiotic sample, then please gp directly to step **6**
