@@ -206,7 +206,7 @@ Total read
 
 **The gene ID and sequence sqparation**
 
-`$ for i in \`cat ./list\`;do fold -s ${i}_anemone_nucle.TAB > ${i}_anemone_nucle.fasta ; done`\
+`$ for i in \`cat ./list\`;do fold -s ${i}_anemone_nucle.TAB > ${i}_anemone_nucle.fasta ; done`
 `$ for i in \`cat ./list\`;do fold -s ${i}_alga_nucle.TAB > ${i}_alga_nucle.fasta ; done`
 
 
